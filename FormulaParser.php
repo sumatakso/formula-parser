@@ -308,13 +308,13 @@ class FormulaParser implements IFormulaParser
             end($new_array);
             $cur = current($new_array);
 
-            if ((strstr('+-', $item)) && (strstr('+-', $cur)) && (strstr('+-', $array_ip1))) {
+            if ((strstr('+-', strval($item))) && (strstr('+-', $cur)) && (strstr('+-', $array_ip1))) {
                 if ($item === '-')
                     $new_array[key($new_array)] = ($cur == '+') ? '-' : '+';
-            } elseif ((strstr('+-', $item)) && (strstr('*/^', $cur)) && (strstr('+-', $array_ip1))) {
+            } elseif ((strstr('+-', strval($item))) && (strstr('*/^', $cur)) && (strstr('+-', $array_ip1))) {
                 $new_array[] = $item;
             } else {
-                if ((strstr('+-', $item)) && ($key + 1 != $i) && (strstr('*/^', $array[$key]))
+                if ((strstr('+-', strval($item))) && ($key + 1 != $i) && (strstr('*/^', $array[$key]))
                     && (!is_numeric($array[$key + 1])) && (isset($array[$key + 1]))
                 ) {
                     if ($item === '-')
